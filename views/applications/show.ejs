@@ -1,0 +1,37 @@
+<!-- views/applications/show.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= application.title %></title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1><%= application.title %> at <%= application.company %></h1>
+
+    <% if (application.notes) { %>
+    <p>Notes: <%= application.notes %></p>
+    <% } %>
+
+    <% if (application.postingLink) { %>
+      <a href="<%= application.postingLink %>">View job posting</a>
+    <% } %>
+    <p>Current Status: <%= application.status %></p>
+
+
+    <!-- UPDATE APP -->
+    <a href="/users/<%= user._id %>/applications/<%= application._id %>/edit">
+      Edit this application
+    </a>
+
+    <!-- DELETE APP -->
+    <form
+    action="/users/<%= user._id %>/applications/<%= application._id %>?_method=DELETE"
+    method="POST"
+    >
+      <button type="submit">Delete this application</button>
+    </form>
+  </body>
+</html>

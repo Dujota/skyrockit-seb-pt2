@@ -1,0 +1,71 @@
+<!-- views/applications/edit.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editing <%= application.title %></title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1>Edit <%= application.title %> at <%= application.company %></h1>
+  <form
+    action="/users/<%= user._id %>/applications/<%= application._id %>?_method=PUT"
+    method="POST"
+  >
+    <label for="company">Company:</label>
+    <input
+      type="text"
+      name="company"
+      id="company"
+      value="<%= application.company %>"
+    >
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" value="<%= application.title %>">
+    <label for="notes">Notes:</label>
+    <textarea name="notes" id="notes"><%= application.notes %></textarea>
+    <label for="postingLink">Posting Link:</label>
+    <input
+      type="text"
+      name="postingLink"
+      id="postingLink"
+      value="<%= application.postingLink %>"
+    >
+    <label for="status">Status:</label>
+    <select id="status" name="status">
+      <option
+        value="interested"
+        <%= application.status === "interested" ? "selected" : "" %>
+      >
+        Interested
+      </option>
+      <option
+        value="applied"
+        <%= application.status === "applied" ? "selected" : "" %>
+      >
+        Applied
+      </option>
+      <option
+        value="interviewing"
+        <%= application.status === "interviewing" ? "selected" : "" %>
+      >
+        Interviewing
+      </option>
+      <option
+        value="rejected"
+        <%= application.status === "rejected" ? "selected" : "" %>
+      >
+        Rejected
+      </option>
+      <option
+        value="accepted"
+        <%= application.status === "accepted" ? "selected" : "" %>
+      >
+        Accepted
+      </option>
+    </select>
+    <button type="submit">Update Application</button>
+  </form>
+</body>
+</html>

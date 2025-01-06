@@ -1,0 +1,40 @@
+<!-- views/applications/new.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a New App</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Add a New App</h1>
+
+    <form action="/users/<%= user._id %>/applications" method="POST">
+      <label for="company">Company:</label>
+      <input type="text" name="company" id="company" required/>
+
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" required/>
+
+      <label for="notes">Notes:</label>
+      <textarea name="notes" id="notes"></textarea>
+
+      <label for="postingLink">Posting Link:</label>
+      <input type="text" name="postingLink" id="postingLink" />
+
+      <label for="status">Status:</label>
+      <select id="status" name="status">
+        <option value="interested">Interested</option>
+        <option value="applied">Applied</option>
+        <option value="interviewing">Interviewing</option>
+        <option value="rejected">Rejected</option>
+        <option value="accepted">Accepted</option>
+      </select>
+
+      <button type="submit">Add Application</button>
+    </form>
+
+  </body>
+</html>
